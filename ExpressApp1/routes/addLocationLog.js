@@ -11,7 +11,8 @@ router.post('/', async function (req, res) {
     const database = client.database(process.env.COSMOS_DATABASE);
     const container = database.container('LocationLog');
 
-    const req_url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${req.body.latitude}&lon=${req.body.longitude}`
+    const req_url = `https://nominatim.openstreetmap.org/reverse?format=json&lat=${parseFloat(req.body.latitude)}&lon=${parseFloat(req.body.longitude)}`
+    console.log(req_url)
     fetch(req_url)
         .then((response)=>response.json())
         .catch(async()=>{
